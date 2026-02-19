@@ -245,6 +245,75 @@ a.pill:hover {
     color: #6ee7b7;
 }
 
+/* Hero Card Layout */
+.hero-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Profile Photo */
+.profile-photo {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    min-height: 200px;
+}
+
+.profile-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(110, 231, 183, 0.6), rgba(96, 165, 250, 0.5), rgba(167, 139, 250, 0.6));
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.8;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.profile-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(11, 14, 20, 0.8) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    min-height: 200px;
+    max-height: 320px;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.profile-photo:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 60px -15px rgba(110, 231, 183, 0.2);
+}
+
+.profile-photo:hover::before {
+    opacity: 1;
+}
+
 .hero-card .card {
     position: relative;
     background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
@@ -1150,6 +1219,21 @@ textarea:focus {
         grid-template-columns: 1fr;
     }
 
+    .hero-card {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 18px;
+    }
+
+    .profile-photo {
+        min-height: 180px;
+    }
+
+    .profile-photo img {
+        min-height: 180px;
+        max-height: 280px;
+    }
+
     .two-col {
         grid-template-columns: 1fr;
     }
@@ -1177,6 +1261,18 @@ textarea:focus {
 }
 
 @media (max-width: 600px) {
+    .hero-card {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-photo {
+        max-width: 100%;
+    }
+
+    .profile-photo img {
+        max-height: 260px;
+    }
+
     .contact-links {
         flex-direction: column;
         align-items: stretch;
