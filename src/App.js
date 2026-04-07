@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 const LINKEDIN = 'https://www.linkedin.com/in/abdullah-almekhyal/'
 const GITHUB = 'https://github.com/mekhyal'
@@ -151,9 +151,60 @@ const skillPanels = [
 
 export default function App() {
   const [navOpen, setNavOpen] = useState(false)
+  const mediaScrollRef = useRef(null)
+  const [mediaScroll, setMediaScroll] = useState({ canPrev: false, canNext: true })
+
   const year = new Date().getFullYear()
 
   const closeNav = () => setNavOpen(false)
+
+  const updateMediaScroll = useCallback(() => {
+    const el = mediaScrollRef.current
+    if (!el) return
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    const max = scrollWidth - clientWidth
+    setMediaScroll({
+      canPrev: scrollLeft > 2,
+      canNext: scrollLeft < max - 2,
+    })
+  }, [])
+
+  useEffect(() => {
+    const el = mediaScrollRef.current
+    if (!el) return
+    updateMediaScroll()
+    el.addEventListener('scroll', updateMediaScroll, { passive: true })
+    const ro = new ResizeObserver(updateMediaScroll)
+    ro.observe(el)
+    return () => {
+      el.removeEventListener('scroll', updateMediaScroll)
+      ro.disconnect()
+    }
+  }, [updateMediaScroll])
+
+  useEffect(() => {
+    const tick = () => {
+      if (document.hidden) return
+      const el = mediaScrollRef.current
+      if (!el) return
+      const { scrollLeft, scrollWidth, clientWidth } = el
+      const max = scrollWidth - clientWidth
+      if (max <= 0) return
+      if (scrollLeft >= max - 2) {
+        el.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        el.scrollBy({ left: clientWidth, behavior: 'smooth' })
+      }
+    }
+    const id = window.setInterval(tick, 3000)
+    return () => window.clearInterval(id)
+  }, [])
+
+  const scrollHeroMedia = (direction) => {
+    const el = mediaScrollRef.current
+    if (!el) return
+    el.scrollBy({ left: direction * el.clientWidth, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -251,9 +302,51 @@ export default function App() {
             </div>
 
             <aside className="hero-card" aria-label="Highlights">
-              <div className="profile-photo">
-                <img src="/profile.jpg" alt="Abdullah Al-Mekhyal" />
+              <div className="hero-media-wrap">
+                <div
+                  ref={mediaScrollRef}
+                  className="hero-media-box"
+                  role="region"
+                  aria-label="Photos — scroll sideways or use arrows"
+                >
+                  <figure className="hero-media-slide">
+                    <img src="/profile.jpg" alt="Abdullah Al-Mekhyal" />
+                  </figure>
+                  <figure className="hero-media-slide">
+                    <img
+                      src="/IMG_9248.jpg"
+                      alt="Kuwait University CS delegation visit at KNPC"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <figure className="hero-media-slide">
+                    <img
+                      src="/IMG_6662.jpg"
+                      alt="Ministry of Higher Education — first place in research posters"
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
+                <button
+                  type="button"
+                  className="hero-media-nav hero-media-nav--prev"
+                  aria-label="Previous photo"
+                  disabled={!mediaScroll.canPrev}
+                  onClick={() => scrollHeroMedia(-1)}
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  className="hero-media-nav hero-media-nav--next"
+                  aria-label="Next photo"
+                  disabled={!mediaScroll.canNext}
+                  onClick={() => scrollHeroMedia(1)}
+                >
+                  ›
+                </button>
               </div>
+
               <div className="card">
                 <h2 className="card-title">Highlights</h2>
                 <ul className="list">
