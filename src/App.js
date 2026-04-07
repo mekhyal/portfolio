@@ -222,13 +222,11 @@ export default function App() {
             <div className="hero-text">
               <p className="eyebrow">Computer Science • Kuwait University</p>
               <h1>
-                Systems for{' '}
-                <span className="grad">AML analytics</span>,{' '}
-                <span className="grad">fraud detection</span>, and{' '}
-                <span className="grad">secure UAVs</span>.
+                From <span className="grad">vision</span> to <span className="grad">systems</span> that make{' '}
+                <span className="grad">impact</span>.
               </h1>
               <p className="value-statement">
-                ML for AML and fraud detection, AI for UAV security built for clarity and real use.
+                ML for AML and fraud detection, AI for UAV security, and SaaS platforms for mosque operations.
               </p>
 
               <div className="hero-cta">
