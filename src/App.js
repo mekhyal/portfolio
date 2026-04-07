@@ -312,7 +312,7 @@ export default function App() {
                   <figure className="hero-media-slide">
                     <img src="/profile.jpg" alt="Abdullah Al-Mekhyal" />
                   </figure>
-                  <figure className="hero-media-slide">
+                  <figure className="hero-media-slide hero-media-slide--align-top">
                     <img
                       src="/IMG_9248.jpg"
                       alt="Kuwait University CS delegation visit at KNPC"
