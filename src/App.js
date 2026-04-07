@@ -85,15 +85,16 @@ const projects = [
     ],
     tags: ['Product', 'Marketplace', 'Reviews', 'Subscriptions'],
   },
-  // {
-  //   title: 'KU CS schedule assistant',
-  //   subtitle: 'Rules-based timetabling',
-  //   bullets: [
-  //     'Draft timetables from past terms plus department rules.',
-  //     'Policy checks (e.g. fair instructor load); chair, coordinator, and faculty roles.',
-  //   ],
-  //   tags: ['Rules', 'Workflows', 'Planning', 'Admin'],
-  // },
+  {
+    title: 'Motor Vehicle Collisions Database (NYC)',
+    subtitle: 'Oracle SQL • ER modeling • 3NF',
+    bullets: [
+      'ER model and 3NF schema: Collisions, Locations, Vehicles, plus a bridge table for many-to-many links.',
+      'Cleaning and ETL through a staging table; constraints: PK, FK, CHECK, NOT NULL in Oracle SQL Developer.',
+      'Advanced SQL for analysis: joins, aggregates, subqueries, and window functions for patterns and severity.',
+    ],
+    tags: ['Oracle', 'SQL', 'ETL', '3NF', 'Data modeling'],
+  },
   {
     title: 'Networked File Synchronization System',
     subtitle: 'C • Client–Server • Checksum Sync',
