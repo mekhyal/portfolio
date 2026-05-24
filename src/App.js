@@ -36,7 +36,7 @@ const experience = [
     role: 'Research Assistant — DATA Lab',
     bullets: [
       'Researching heterogeneous graph and hypergraph ML methods for financial crime detection, including AML, fraud, and suspicious transaction analysis.',
-      'Developing AI-driven approaches targeting scalable and reproducible financial intelligence systems applicable to banks and financial institutions across the GCC.'.
+      'Developing AI-driven approaches targeting scalable and reproducible financial intelligence systems applicable to banks and financial institutions across the GCC.',
     ],
   },
   {
