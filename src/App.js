@@ -23,6 +23,23 @@ const highlights = [
 
 const experience = [
   {
+    title: 'Ufq - أفق',
+    time: '2026 - Present',
+    role: 'Co-Founder',
+    bullets: [
+      'Co-Founder & CTO at UFQ, leading the technical vision and development of digital solutions for mosques and Quran circles, focused on transforming administration, communication, and learning experiences through technology.',
+    ]
+  },
+  {
+    title: 'Kuwait University',
+    time: '2026 - Present',
+    role: 'Research Assistant — DATA Lab',
+    bullets: [
+      'Researching heterogeneous graph and hypergraph ML methods for financial crime detection, including AML, fraud, and suspicious transaction analysis.',
+      'Developing AI-driven approaches targeting scalable and reproducible financial intelligence systems applicable to banks and financial institutions across the GCC.'.
+    ],
+  },
+  {
     title: 'Global Student Research (GSR)',
     time: '2025 – Present',
     role: 'Local Ambassador • King Fahd University of Petroleum & Minerals (KFUPM)',
